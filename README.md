@@ -6,6 +6,8 @@
 
 ## Execute
 
+Ubiquiti airMAX M:
+
 To configure "Point A" or "Access Point" for Point-to-Point:
 
 	$ py ubnt_ptp_a.py
@@ -14,3 +16,13 @@ To configure "Point B" or "Station" for Point-to-Point:
 
 	$ py ubnt_ptp_b.py
 
+Ubiquiti airMAX AC:
+
+To configure "Point A" or "Access Point" for Point-to-Point:
+
+	$ py ubnt_ptp_ac_a.py
+
+To configure "Point B" or "Station" for Point-to-Point:
+
+	$ py ubnt_ptp_ac_b.py
+	
