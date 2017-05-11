@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-ubnt_ptp_ac_a.py - AutoConfig UBNT PTP AC BASE (ACCESS POINT)
+ubnt_ptp_ac_b.py - AutoConfig UBNT PTP AC REMOTE (STATION)
 Copyright 2017, KRIPT4
 
 Testing: UBIQUITI POWERBEAM 5AC ISO - FW: XC.v7.2.1 (11/5/2017) = OK
@@ -19,12 +19,13 @@ varPASS = 'ubnt'				# DEFAULT PASSWORD
 varSSID = 'BASE-PtP-SSID'		# SSID
 varDBM  = '24'					# TX POWER
 varWPA2 = '0123456789'			# WPA2-AES
+varIPNW = '192.168.1.21'		# NEW IP ADDRESS
 varDNS1 = '8.8.8.8'				# DNS1
 varDNS2 = '8.8.4.4'				# DNS2
 varNTPS = '2.ar.pool.ntp.org'	# NTP SERVER
 varNUSR = 'KRIPT4'				# NEW USERNAME
 varNPSS = 'KRIPT4'				# NEW PASSWORD
-varNAMD = 'BASE PTP AC'			# NEW DIVICE NAME	
+varNAMD = 'REMOTE'				# NEW DIVICE NAME	
 
 start_time = time.time()		# TIME EXECUTION TEST
 
@@ -57,7 +58,6 @@ time.sleep(1)
 driver.find_element_by_id('agreed').click()
 time.sleep(1)
 driver.find_element_by_name('login').click()
-#time.sleep(2)
 ## END LOGIN
 
 ## CHANGE PASSWORD DIALOG:
@@ -75,19 +75,8 @@ time.sleep(2)
 ## WIRELESS CONFIG
 driver.find_element_by_xpath('//*[@id="main_menu"]/ul/li[2]/a').click()
 time.sleep(2)
-driver.find_element_by_id('wmode').click()
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="wmode"]/option[1]').click() #Access Point PtP
-#driver.find_element_by_xpath('//*[@id="wmode"]/option[2]').click() #Access Point PtMP
 driver.find_element_by_id('essid').clear()
 driver.find_element_by_id('essid').send_keys(varSSID)
-time.sleep(1)
-driver.find_element_by_id('centerFrequency').click()
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="centerFrequency"]/option[3]').click()
-time.sleep(1)
-driver.find_element_by_id('antenna').click()
-driver.find_element_by_xpath('//*[@id="antenna"]/option[1]').click()
 time.sleep(1)
 driver.find_element_by_id('obey_regulatory_status').click()
 time.sleep(1)
@@ -113,6 +102,8 @@ driver.find_element_by_id('signal_led3').send_keys('55')
 ## NETWORK CONFIG
 driver.find_element_by_xpath('//*[@id="main_menu"]/ul/li[3]/a').click()
 time.sleep(2)
+driver.find_element_by_name('ip').clear()
+driver.find_element_by_name('ip').send_keys(varIPNW)
 driver.find_element_by_name('dns1').send_keys(varDNS1)
 driver.find_element_by_name('dns2').send_keys(varDNS2)
 driver.find_element_by_id('mlanStp').click()
