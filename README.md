@@ -4,9 +4,14 @@
 * Simple use and modification.
 * Includes runtime at the end of the process.
 
+## Requirements
+
+* Python 3.6.1 (https://www.python.org/)
+* Selenium (pip install selenium)
+
 ## Execute
 
-Ubiquiti airMAX M v6:
+**Ubiquiti airMAX M v6:**
 
 To configure "Point A" or "Access Point" for Point-to-Point:
 
@@ -16,7 +21,7 @@ To configure "Point B" or "Station" for Point-to-Point:
 
 	$ py ubnt_ptp_b.py
 
-Ubiquiti airMAX AC v7:
+**Ubiquiti airMAX AC v7:**
 
 To configure "Point A" or "Access Point" for Point-to-Point:
 
@@ -26,7 +31,7 @@ To configure "Point B" or "Station" for Point-to-Point:
 
 	$ py ubnt_ptp_ac_b.py
 	
-Ubiquiti airMAX AC v8:
+**Ubiquiti airMAX AC v8:**
 
 To configure "Point A" or "Access Point" for Point-to-Point:
 
