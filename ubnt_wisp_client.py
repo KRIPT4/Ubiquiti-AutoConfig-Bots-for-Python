@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 """
-ubnt_ptp_a.py - AutoConfig UBNT PTP BASE (ACCESS POINT)
+ubnt_wisp_client.py - AutoConfig UBNT WISP CLIENT (STATION+ROUTER)
 Copyright 2017, KRIPT4
 
 Testing:
-- UBIQUITI NANOLOCO M5 - FW: XW.v6.0.4 (10/5/2017) = OK
-- UBIQUITI ROCKET M5 - FW: XW.v5.6.9 (16/5/2017) = OK
+- UBIQUITI ROCKET M5 - FW: XW.v6.0.4 (16/5/2017) = OK
 
 More info:
  * KRIPT4: https://github.com/KRIPT4/Ubiquiti-AutoConfig-Bots-for-Python
@@ -38,19 +37,24 @@ def mainExe():
 	varIPAD = '192.168.1.20'		# DEFAULT IP ADDRESS
 	varUSER = 'ubnt'				# DEFAULT USERNAME
 	varPASS = 'ubnt'				# DEFAULT PASSWORD
-	varSSID = 'BASE-PtP-SSID'		# SSID
-	varWPA2 = '0123456789'			# WPA2-AES
-	varDNS1 = '8.8.8.8'				# DNS1
-	varDNS2 = '8.8.4.4'				# DNS2
-	varNTPS = '2.ar.pool.ntp.org'	# NTP SERVER
 	varNUSR = 'KRIPT4'				# NEW USERNAME
 	varNPSS = 'KRIPT4'				# NEW PASSWORD
-	varNAMD = 'BASE PTP'			# NEW DIVICE NAME	
-
+	varSSID = 'BASE-NODE'			# SSID
+	varWPA2 = '0123456789'			# WPA2-AES
+	varIPAN = '192.168.70.200'		# NEW IP ADDRESS
+	varGATE = '192.168.70.1'		# NEW IP GATEWAY
+	varDNS1 = '8.8.8.8'				# DNS1
+	varDNS2 = '8.8.4.4'				# DNS2
+	varIPLAN = '192.168.1.20'		# IP LAN DHCP SERVER
+	varIPST = '192.168.1.50'		# IP START
+	varIPEN = '192.168.1.200'		# IP END
+	varLTOU = '3600'				# Lease Time
+	varNTPS = '2.ar.pool.ntp.org'	# NTP SERVER
+	varNAMD = 'CLIENT-WISP'			# NEW DIVICE NAME	
 	start_time = time.time()		# TIME EXECUTION TEST
 
 	global driver #executable_path = '?:\PATH\TO\chromedriver.exe', 
-	driver = webdriver.Chrome(chrome_options = chrome_options)
+	driver = webdriver.Chrome(chrome_options=chrome_options)
 	driver.get('http://'+ varIPAD +'/')
 	time.sleep(1)
 
@@ -65,19 +69,15 @@ def mainExe():
 
 	## WIRELESS CONFIG
 	retryElement('/html/body/table/tbody/tr[2]/td[1]/a[3]').click()
-	retryElementID('wmode').click()
-	retryElement('//*[@id="wmode"]/option[2]').click()
 	retryElementID('essid').clear()
 	retryElementID('essid').send_keys(varSSID)
 	retryElementID('dfs').click() # DISABLE DFS
-	retryElementID('chan_freq').click()
-	retryElement('//*[@id="chan_freq"]/option[7]').click()
 	retryElementID('security').click()
 	retryElement('//*[@id="security"]/option[3]').click() #WPA2-AES
 	retryElementID('wpa_key').send_keys(varWPA2)
 	retryElementID('hide-warning').click()
 	retryElement('//*[@id="this_form"]/table/tbody[3]/tr/td/input').click()
-	## END WIRELESS CONFIG.
+	## END WIRELESS CONFIG
 
 	## CHANGE PASSWORD DIALOG:
 	retryElement('//*[@id="dlgOldPassword"]').send_keys(varPASS)
@@ -89,11 +89,37 @@ def mainExe():
 
 	## NETWORK CONFIG
 	retryElement('/html/body/table/tbody/tr[2]/td[1]/a[4]').click()
-	retryElement('//*[@id="mgmtStp"]').click()
-	retryElementID('mgmtDns1').clear()
-	retryElementID('mgmtDns1').send_keys(varDNS1)
-	retryElementID('mgmtDns2').clear()
-	retryElementID('mgmtDns2').send_keys(varDNS2)
+	time.sleep(2)
+	retryElement('//*[@id="netmode"]').click()
+	retryElement('//*[@id="netmode"]/option[2]').click()
+	retryElement('//*[@id="cfgmode"]').click()
+	retryElement('//*[@id="cfgmode"]/option[2]').click()
+	retryElementID('wanIpModeStatic').click() #STATIC MODE
+	retryElementID('wanIpAddr').clear() #IP ADDRESS
+	retryElementID('wanIpAddr').send_keys(varIPAN)
+	retryElementID('wanGateway').clear()
+	retryElementID('wanGateway').send_keys(varGATE)
+	retryElementID('wanDns1').send_keys(varDNS1)
+	retryElementID('wanDns2').send_keys(varDNS2)
+	retryElementID('wanNat').click() #NAT
+	retryElementID('wanNatSip').click()
+	retryElementID('wanNatPptp').click()
+	retryElementID('wanNatFtp').click()
+	retryElementID('wanNatRtsp').click()
+
+	retryElementID('wanBlockMgmt').click() #Block management access
+
+	driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+	retryElementID('lanIpAddr1').clear()
+	retryElementID('lanIpAddr1').send_keys(varIPLAN)
+	retryElementID('lanDhcpEnabled1').click()
+	retryElementID('lanDhcpStart1').clear()
+	retryElementID('lanDhcpStart1').send_keys(varIPST)
+	retryElementID('lanDhcpEnd1').clear()
+	retryElementID('lanDhcpEnd1').send_keys(varIPEN)
+	retryElementID('lanDhcpLeaseTime1').clear()
+	retryElementID('lanDhcpLeaseTime1').send_keys(varLTOU)
 	retryElement('//*[@id="change"]').click()
 	## END NETWORK CONFIG
 
@@ -107,7 +133,7 @@ def mainExe():
 	retryElementID('led3').send_keys('60')
 	retryElementID('led4').clear()
 	retryElementID('led4').send_keys('55')
-	retryElement('//*[@id="adv_form"]/table/tbody/tr[24]/td/input').click()
+	retryElement('//*[@id="adv_form"]/table/tbody/tr[22]/td/input').click()
 	## END ADVANCED CONFIG
 
 	## SERVICES CONFIG

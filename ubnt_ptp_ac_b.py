@@ -32,6 +32,7 @@ start_time = time.time()		# TIME EXECUTION TEST
 #https://github.com/SeleniumHQ/selenium/blob/master/py/selenium/webdriver/chrome/options.py
 
 chrome_options = Options()
+chrome_options.add_argument("--disable-infobars")
 chrome_options.add_argument('--disable-extensions')
 chrome_options.add_argument('--allow-running-insecure-content')
 chrome_options.add_argument('--disable-web-security')

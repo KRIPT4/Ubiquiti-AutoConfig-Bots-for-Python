@@ -21,6 +21,10 @@ To configure "Point B" or "Station" for Point-to-Point:
 
 	$ py ubnt_ptp_b.py
 
+To configure "Client WISP":
+
+	$ py ubnt_wisp_client.py
+
 **Ubiquiti airMAX AC v7:**
 
 To configure "Point A" or "Access Point" for Point-to-Point:
@@ -42,6 +46,10 @@ To configure "Point B" or "Station" for Point-to-Point:
 	$ py ubnt_ptp_ac_b_v8.py
 
 ## Changelog
+
+**v4.2** May 16, 2017
+- Add disable-infobars.
+- Add ubnt_wisp_client.py (airMAX M)
 
 **v4.1** May 16, 2017
 - Optimization: ubnt_ptp_a.py (airMAX M)
