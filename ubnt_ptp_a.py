@@ -49,8 +49,8 @@ def mainExe():
 
 	start_time = time.time()		# TIME EXECUTION TEST
 
-	global driver #executable_path = '?:\PATH\TO\chromedriver.exe', 
-	driver = webdriver.Chrome(chrome_options = chrome_options)
+	global driver
+	driver = webdriver.Chrome(executable_path = '?:\PATH\TO\chromedriver.exe', chrome_options = chrome_options)
 	driver.get('http://'+ varIPAD +'/')
 	time.sleep(1)
 

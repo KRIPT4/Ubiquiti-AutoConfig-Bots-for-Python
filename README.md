@@ -69,5 +69,5 @@ To configure "Point B" or "Station" for Point-to-Point:
 
 ## License
 
-Instagram Bots for Python is [GPL-3.0](https://github.com/KRIPT4/Ubiquiti-AutoConfig-Bots-for-Python/blob/master/LICENSE) Licensed  
+Ubiquiti AutoConfig Bots for Python is [GPL-3.0](https://github.com/KRIPT4/Ubiquiti-AutoConfig-Bots-for-Python/blob/master/LICENSE) Licensed  
 Copyright © 2017 KRIPT4 (https://github.com/KRIPT4)
