@@ -21,6 +21,8 @@ chrome_options.add_argument("--disable-infobars")
 chrome_options.add_argument('--disable-extensions')
 chrome_options.add_argument('--allow-running-insecure-content')
 chrome_options.add_argument('--disable-web-security')
+chrome_options.add_argument("--disable-popup-blocking")
+chrome_options.add_argument('--enable-precise-memory-info')
 chrome_options.add_argument('--no-referrers')
 chrome_options.add_argument('--window-size=900,900')
 chrome_options.add_experimental_option('prefs', {

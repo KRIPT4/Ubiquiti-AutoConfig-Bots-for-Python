@@ -49,6 +49,8 @@ To configure "Point B" or "Station" for Point-to-Point:
 
 **v4.2** May 16, 2017
 - Add disable-infobars.
+- Add disable-popup-blocking.
+- Add enable-precise-memory-info.
 - Add ubnt_wisp_client.py (airMAX M)
 
 **v4.1** May 16, 2017
